@@ -5,10 +5,12 @@ import { Button } from "../button";
 import { formatPKRCurrency } from "@/utils/formatPKRCurrency";
 import { useFarmRequest } from "@/hooks/apis/useContractFarming";
 import { useContextConsumer } from "@/context/Context";
+import { useGetAllProjects } from "@/hooks/apis/useProject";
 
 const Lands: React.FC<LandsProps> = ({ lands, onSeeMoreDetails }) => {
   const { token } = useContextConsumer();
   const { mutate: sendFarmRequest, isPending } = useFarmRequest();
+  const { data: projects, isLoading } = useGetAllProjects(token);
 
   const handleRequest = (landId: string) => {
     const payload = {

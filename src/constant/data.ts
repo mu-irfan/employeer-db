@@ -4,6 +4,11 @@ export const category = [
   { value: "tehsil", label: "Tehsil" },
 ];
 
+export const role = [
+  { value: "m&e", label: "M&E" },
+  { value: "apprenticeship", label: "Apprenticeship" },
+];
+
 export const pakistanData: PakistanData = {
   provinces: [
     { label: "Azad Kashmir", value: "azad_kashmir" },

@@ -106,21 +106,57 @@ const resetPasswordSchema = z
 const profileFormSchema = z.object({
   name: z
     .string()
-    .min(2, {
-      message: "Username must be at least 2 characters.",
-    })
-    .max(30, {
-      message: "Username must not be longer than 30 characters.",
-    }),
-  email: z
-    .string({
-      required_error: "Please select an email to display.",
-    })
-    .email(),
-  phone: z.string({
-    required_error: "Phone number is required.",
-  }),
+    .min(2, "Name must be at least 2 characters.")
+    .max(30, "Name must not be longer than 30 characters."),
+  organization: z.string().optional(),
+  countryCode: z.string().optional(),
+  phone: z.string().min(10, "Phone number must be at least 10 digits."),
+  province: z.string().nullable().optional(),
+  district: z.string().nullable().optional(),
+  tehsil: z.string().nullable().optional(),
+  description: z
+    .string()
+    .max(255, "Description cannot exceed 255 characters")
+    .nullable()
+    .optional()
+    .transform((value) => value ?? ""),
+  address: z
+    .string()
+    .max(255, "Address cannot exceed 255 characters")
+    .nullable()
+    .optional()
+    .transform((value) => value ?? ""),
 });
+
+// const projectFormSchema = z
+//   .object({
+//     title: z.string().nonempty({ message: "Project Title is required." }),
+//     trade: z.string().nonempty({ message: "Trade selection is required." }),
+//     sector: z.string().nonempty({ message: "Sector is required." }),
+//     description: z.string().nonempty({ message: "Description is required." }),
+//     requirements: z
+//       .string()
+//       .nonempty({ message: "Requirements are required." }),
+//     location: z.object({
+//       lat: z.string().nonempty({ message: "Latitude is required." }),
+//       lng: z.string().nonempty({ message: "Longitude is required." }),
+//     }),
+//     address: z.string().nonempty({ message: "Address is required." }),
+//     tehsil: z.string().nonempty({ message: "Tehsil is required." }),
+//     district: z.string().nonempty({ message: "District is required." }),
+//     province: z.string().nonempty({ message: "Province is required." }),
+//     duration: z.string().nonempty({ message: "Duration is required." }),
+//     startDate: z.string().nonempty({ message: "Start Date is required." }),
+//     endDate: z.string().nonempty({ message: "End Date is required." }),
+//     deadline: z
+//       .string()
+//       .nonempty({ message: "Application Deadline is required." }),
+//     totalSlots: z.string().nonempty({ message: "Total Slots are required." }),
+//   })
+//   .refine((data) => new Date(data.endDate) > new Date(data.startDate), {
+//     message: "End date must be greater than start date",
+//     path: ["endDate"],
+//   });
 
 const projectFormSchema = z
   .object({
@@ -131,10 +167,9 @@ const projectFormSchema = z
     requirements: z
       .string()
       .nonempty({ message: "Requirements are required." }),
-    location: z.object({
-      lat: z.string().nonempty({ message: "Latitude is required." }),
-      lng: z.string().nonempty({ message: "Longitude is required." }),
-    }),
+    location: z
+      .array(z.number())
+      .length(2, { message: "Location must contain latitude and longitude." }),
     address: z.string().nonempty({ message: "Address is required." }),
     tehsil: z.string().nonempty({ message: "Tehsil is required." }),
     district: z.string().nonempty({ message: "District is required." }),

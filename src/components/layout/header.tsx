@@ -21,10 +21,8 @@ export default function Header() {
   useEffect(() => {
     driverRef.current = driver({
       popoverClass: "driverjs-theme",
-      allowClose: true,
-      showButtons: ["next", "previous", "close"],
+      showButtons: ["next", "close"],
       animate: true,
-      prevBtnText: "Close",
       nextBtnText: "Search",
       doneBtnText: "Search",
       onNextClick: () => {

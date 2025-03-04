@@ -13,7 +13,6 @@ import {
 import { Input } from "../input";
 import { Label } from "../label";
 import LabelInputContainer from "@/components/Forms/LabelInputContainer";
-import toast from "react-hot-toast";
 import { projectFormSchema } from "@/schemas/FormsValidation";
 import {
   Select,
@@ -30,6 +29,7 @@ import { cn } from "@/lib/utils";
 import { useCreateProject } from "@/hooks/apis/useProject";
 import { useContextConsumer } from "@/context/Context";
 import { MapContainer, TileLayer, Marker, useMapEvents } from "react-leaflet";
+import { Textarea } from "../textarea";
 
 const markerIcon = new L.Icon({
   iconUrl: "/images/map/marker-green.png",
@@ -49,11 +49,6 @@ const LocationPicker = ({ setLat, setLng }: any) => {
   return null;
 };
 
-interface Option {
-  value: string;
-  label: string;
-}
-
 const AddProjectForm = ({ onOpenChange, onClose }: any) => {
   const { token } = useContextConsumer();
   const [districtOptions, setDistrictOptions] = useState<Option[]>([]);
@@ -71,7 +66,7 @@ const AddProjectForm = ({ onOpenChange, onClose }: any) => {
       sector: "",
       description: "",
       requirements: "",
-      location: [],
+      location: [0, 0],
       address: "",
       province: "",
       district: "",
@@ -95,44 +90,21 @@ const AddProjectForm = ({ onOpenChange, onClose }: any) => {
     setTehsilOptions(tehsils as any);
   };
 
-  // const onSubmit = (data: z.infer<typeof projectFormSchema>) => {
-  //   console.log(data, "dataaaa");
-  //   // if (new Date(data.startDate) > new Date(data.endDate)) {
-  //   //   toast.error("Start Date cannot be after End Date.");
-  //   //   return;
-  //   // }
-
-  //   // createProject(
-  //   //   { data, token },
-  //   //   {
-  //   //     onSuccess: (log) => {
-  //   //       if (log?.success) {
-  //   //         onClose();
-  //   //       }
-  //   //     },
-  //   //   }
-  //   // );
-  // };
-
-  const onSubmit = (data) => {
-    console.log("Form Submitted");
+  const onSubmit = (data: z.infer<typeof projectFormSchema>) => {
     const updatedData = {
       ...data,
       location: { lat: lat.toString(), lng: lng.toString() },
     };
-
-    console.log(updatedData, "dataaaa");
-
-    // createProject(
-    //   { data: updatedData, token },
-    //   {
-    //     onSuccess: (log) => {
-    //       if (log?.success) {
-    //         onClose();
-    //       }
-    //     },
-    //   }
-    // );
+    createProject(
+      { updatedData, token },
+      {
+        onSuccess: (log) => {
+          if (log?.success) {
+            onClose();
+          }
+        },
+      }
+    );
   };
 
   return (
@@ -205,28 +177,6 @@ const AddProjectForm = ({ onOpenChange, onClose }: any) => {
         </LabelInputContainer>
 
         <LabelInputContainer>
-          <Label htmlFor="description">Description</Label>
-          <FormField
-            control={form.control}
-            name="description"
-            render={({ field }) => (
-              <FormItem>
-                <FormControl>
-                  <Input
-                    id="description"
-                    placeholder="Enter Description"
-                    type="text"
-                    {...field}
-                    className="border border-estateLightGray focus:outline-none focus:ring-1 focus:ring-primary disabled:bg-primary/20"
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-        </LabelInputContainer>
-
-        <LabelInputContainer>
           <Label htmlFor="requirements">Requirements</Label>
           <FormField
             control={form.control}
@@ -253,34 +203,12 @@ const AddProjectForm = ({ onOpenChange, onClose }: any) => {
           <MapContainer
             center={[lat, lng]}
             zoom={6}
-            style={{ height: "300px", width: "100%" }}
+            style={{ height: "150px", width: "100%" }}
           >
             <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
             <Marker position={[lat, lng]} icon={markerIcon} />
             <LocationPicker setLat={setLat} setLng={setLng} />
           </MapContainer>
-        </LabelInputContainer>
-
-        <LabelInputContainer>
-          <Label htmlFor="lat">Latitude</Label>
-          <Input
-            id="lat"
-            type="text"
-            value={lat}
-            readOnly
-            className="border border-gray-300"
-          />
-        </LabelInputContainer>
-
-        <LabelInputContainer>
-          <Label htmlFor="lng">Longitude</Label>
-          <Input
-            id="lng"
-            type="text"
-            value={lng}
-            readOnly
-            className="border border-gray-300"
-          />
         </LabelInputContainer>
 
         <LabelInputContainer>
@@ -527,20 +455,22 @@ const AddProjectForm = ({ onOpenChange, onClose }: any) => {
           />
         </LabelInputContainer>
 
-        <LabelInputContainer>
-          <Label htmlFor="address">Address</Label>
+        <LabelInputContainer className="mb-4">
+          <Label htmlFor="address" className="dark:text-farmacieGrey">
+            address
+          </Label>
           <FormField
             control={form.control}
             name="address"
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <Input
+                  <Textarea
+                    placeholder="Enter your address ..."
+                    rows={4}
                     id="address"
-                    placeholder="Enter address"
-                    type="text"
+                    className="outline-none focus:border-primary"
                     {...field}
-                    className="border border-estateLightGray focus:outline-none focus:ring-1 focus:ring-primary disabled:bg-primary/20"
                   />
                 </FormControl>
                 <FormMessage />
@@ -549,7 +479,31 @@ const AddProjectForm = ({ onOpenChange, onClose }: any) => {
           />
         </LabelInputContainer>
 
-        <Button type="submit" className="w-full">
+        <LabelInputContainer className="mb-4">
+          <Label htmlFor="description" className="dark:text-farmacieGrey">
+            description
+          </Label>
+          <FormField
+            control={form.control}
+            name="description"
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <Textarea
+                    placeholder="Enter your description ..."
+                    rows={4}
+                    id="description"
+                    className="outline-none focus:border-primary"
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </LabelInputContainer>
+
+        <Button type="submit" className="w-full" disabled={loading}>
           Add Project
         </Button>
       </form>

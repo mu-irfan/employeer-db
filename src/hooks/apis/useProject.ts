@@ -26,7 +26,7 @@ export const useCreateProject = () => {
   });
 };
 
-export const useGetRequestFarmContract = (token: string) => {
+export const useGetAllProjects = (token: string) => {
   return useQuery<any, Error>({
     queryKey: ["allProjects", token],
     queryFn: () => getProjectList(token),
