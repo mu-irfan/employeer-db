@@ -116,7 +116,11 @@ const AddProjectForm = ({ onOpenChange, onClose }: any) => {
 
   const onSubmit = (data) => {
     console.log("Form Submitted");
-    const updatedData = { ...data, location: [lat, lng] };
+    const updatedData = {
+      ...data,
+      location: { lat: lat.toString(), lng: lng.toString() },
+    };
+
     console.log(updatedData, "dataaaa");
 
     // createProject(
