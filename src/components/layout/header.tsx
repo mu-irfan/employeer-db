@@ -8,8 +8,8 @@ import { Separator } from "../ui/separator";
 import { Breadcrumbs } from "../breadcrumbs";
 import { UserNav } from "./user-nav";
 import { Button } from "../ui/button";
-import SearchLand from "../ui/SearchForm/AddProject";
 import { useContextConsumer } from "@/context/Context";
+import AddProjectModal from "../ui/SearchForm/AddProject";
 
 export default function Header() {
   const router = useRouter();
@@ -73,7 +73,7 @@ export default function Header() {
           <UserNav />
         </div>
       </header>
-      <SearchLand
+      <AddProjectModal
         open={isSearchOpen}
         onOpenChange={setSearchOpen}
         onSearchSubmit={handleSearchSubmit}

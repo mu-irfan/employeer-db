@@ -1,7 +1,7 @@
 "use client";
 import { useAuth } from "@/hooks/useAuth";
 import { createContext, useContext, useState, ReactNode } from "react";
-import { getFilteredLands, getLandDetails } from "@/api/lands";
+import { getFilteredLands, getProjectDetails } from "@/api/lands";
 import { getFarmContractLandDetails } from "@/api/contract-farming";
 
 // Define context type
@@ -60,7 +60,7 @@ export const ContextProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const handleLandsDetails = async (uid: string) => {
-    const details: Land = await getLandDetails(uid, token);
+    const details: Land = await getProjectDetails(uid, token);
     setLandDetails(details);
     setSelectedLandId(uid);
     setShowDetails(true);

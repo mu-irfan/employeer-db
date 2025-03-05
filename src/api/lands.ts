@@ -30,21 +30,21 @@ export const getLands = async (
   }
 };
 
-export const getLandDetails = async (farm_uid: any, token: string) => {
+export const getProjectDetails = async (uuid: string, token: string) => {
   try {
-    const response = await apiClient.get(`/farm_details_updated`, {
-      params: { farm_uid },
+    const response = await axios.get(`${baseURL}/project/get`, {
+      params: { uuid },
       headers: { Authorization: `Bearer ${token}` },
     });
 
     if (response.data) {
       return response.data;
     } else {
-      console.log("No data found for the land details");
+      console.log("No data found for the project details");
       return {};
     }
   } catch (error) {
-    console.error("Error fetching land details:", error);
+    console.error("Error fetching project details:", error);
     return error;
   }
 };

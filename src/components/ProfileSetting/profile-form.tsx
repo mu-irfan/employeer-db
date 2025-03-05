@@ -34,7 +34,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { pakistanData, role } from "@/constant/data";
+import { pakistanData } from "@/constant/data";
 import { cn } from "@/lib/utils";
 
 type ProfileFormValues = z.infer<typeof profileFormSchema>;
@@ -47,6 +47,7 @@ export default function ProfileForm() {
   const { data: session } = useSession();
 
   const { data: apiUser, isLoading } = useGetUSerProfile(token);
+
   const { mutate: updateUser, isPending: updating } = useUpdateUserProfile();
 
   const form = useForm<ProfileFormValues>({
@@ -105,6 +106,8 @@ export default function ProfileForm() {
       }
     );
   }
+
+  console.log(apiUser, "apiUserapiUser");
 
   return (
     <div className="relative">

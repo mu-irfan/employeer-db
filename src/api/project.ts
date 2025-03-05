@@ -26,3 +26,36 @@ export const getProjectList = async (token: string) => {
     return error;
   }
 };
+
+export const updateProject = async (data: any, token: string) => {
+  try {
+    const res = await axios.patch(
+      `${baseURL}/project/update?uuid=${data.uuid}`,
+      data,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return res.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const deleteProject = async (uuid: string, token: string) => {
+  try {
+    const res = await axios.delete(`${baseURL}/project/delete?uuid=${uuid}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      data: {
+        contract_id: uuid,
+      },
+    });
+    return res.data;
+  } catch (error) {
+    return error;
+  }
+};

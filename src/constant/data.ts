@@ -9,6 +9,21 @@ export const role = [
   { value: "apprenticeship", label: "Apprenticeship" },
 ];
 
+export const trade = [
+  { value: "carpenter", label: "Carpenter" },
+  { value: "elevator_mechanic", label: "Elevator Mechanic" },
+  { value: "iron_worker", label: "Iron Worker" },
+  { value: "laborer", label: "Laborer" },
+  { value: "civil_engineer", label: "Civil Engineer" },
+  { value: "mechanical", label: "Mechanical" },
+  { value: "electrical", label: "Electrical" },
+  { value: "electronics", label: "Electronics" },
+  { value: "chemical", label: "Chemical" },
+  { value: "mechatronics", label: "Mechatronics" },
+  { value: "printing_graphic_arts", label: "Printing and Graphic Arts" },
+  { value: "electrical_automation", label: "Electrical Automation" },
+];
+
 export const pakistanData: PakistanData = {
   provinces: [
     { label: "Azad Kashmir", value: "azad_kashmir" },

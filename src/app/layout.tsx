@@ -7,20 +7,20 @@ import QueryProvider from "@/query/QueryProvider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Admin Dashboard",
-  description: "Admin Dashboard for managing students and projects",
+  title: "Employeer Dashboard",
+  description: "Employeer Dashboard for managing students and projects",
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "",
-    title: "Admin Dashboard",
-    description: "Admin Dashboard for managing students and projects",
+    title: "Employeer Dashboard",
+    description: "Employeer Dashboard for managing students and projects",
     images: [
       {
         url: "",
         width: 1200,
         height: 630,
-        alt: "Admin Dashboard for managing students and projects",
+        alt: "Employeer Dashboard for managing students and projects",
       },
     ],
   },

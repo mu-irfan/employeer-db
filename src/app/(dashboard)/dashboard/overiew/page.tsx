@@ -1,12 +1,13 @@
 "use client";
 import { useContextConsumer } from "@/context/Context";
 import dynamic from "next/dynamic";
-import Lands from "@/components/ui/Lands/Lands";
 import { Button } from "@/components/ui/button";
 import { Undo2, X, Filter } from "lucide-react";
 import LandDetails from "@/components/ui/Lands/LandDetail/LandDetails";
 import FilterModal from "@/components/ui/SearchForm/Filters/Filter";
 import { Toaster } from "react-hot-toast";
+import { useGetAllProjects } from "@/hooks/apis/useProject";
+import Projects from "@/components/ui/Lands/Projects";
 
 const Map = dynamic(() => import("@/components/LeafLetMap/Map"), {
   ssr: false,
@@ -14,6 +15,7 @@ const Map = dynamic(() => import("@/components/LeafLetMap/Map"), {
 
 export default function Home() {
   const {
+    token,
     showLands,
     setShowLands,
     lands,
@@ -25,6 +27,10 @@ export default function Home() {
     isFilterModalOpen,
     setFilterModalOpen,
   } = useContextConsumer();
+
+  const { data: projects, isLoading } = useGetAllProjects(token);
+
+  console.log(projects, "projectsss");
 
   return (
     <>
@@ -38,7 +44,7 @@ export default function Home() {
             resetMap={resetMap}
           />
           <div className="absolute inset-0 bg-estateBlack opacity-40 z-20 pointer-events-none"></div>
-          {showLands && !showDetails && (
+          {!showLands && !showDetails && (
             <div className="absolute left-3 md:left-auto top-2 md:top-0 md:right-2 h-full md:w-[400px] md:p-4 md:overflow-y-auto z-30 space-y-4 scrollbar-custom">
               <Button
                 variant="outline"
@@ -56,7 +62,10 @@ export default function Home() {
               >
                 <Filter />
               </Button>
-              <Lands lands={lands} onSeeMoreDetails={handleLandsDetails} />
+              <Projects
+                projects={projects?.data || []}
+                onSeeMoreDetails={handleLandsDetails}
+              />
             </div>
           )}
           {showDetails && (
@@ -64,7 +73,7 @@ export default function Home() {
               <Button variant="outline" size="sm" onClick={resetMap}>
                 <X className="inline" />
               </Button>
-              <LandDetails details={landDetails} />
+              <LandDetails project={landDetails?.data} />
             </div>
           )}
         </div>

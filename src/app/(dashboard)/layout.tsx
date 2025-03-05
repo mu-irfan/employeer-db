@@ -7,8 +7,8 @@ import AppSidebar from "@/components/layout/app-sidebar";
 import Header from "@/components/layout/header";
 
 export const metadata = {
-  title: "Admin Dashboard",
-  description: "Admin Dashboard",
+  title: "Employeer Dashboard",
+  description: "Employeer Dashboard",
 };
 
 const Layout: FC<{ children: ReactNode }> = async ({ children }) => {
