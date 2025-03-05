@@ -98,7 +98,6 @@ const AddProjectForm = ({ onOpenChange, onClose }: any) => {
         parseFloat(data.location[1].toString()),
       ],
     };
-    console.log(data, "datatatatata");
     createProject(
       { data: updatedData, token },
       {
