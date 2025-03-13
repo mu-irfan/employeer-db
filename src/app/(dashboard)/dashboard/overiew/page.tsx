@@ -3,11 +3,11 @@ import { useContextConsumer } from "@/context/Context";
 import dynamic from "next/dynamic";
 import { Button } from "@/components/ui/button";
 import { Undo2, X, Filter } from "lucide-react";
-import LandDetails from "@/components/ui/Lands/LandDetail/LandDetails";
 import FilterModal from "@/components/ui/SearchForm/Filters/Filter";
 import { Toaster } from "react-hot-toast";
 import { useGetAllProjects } from "@/hooks/apis/useProject";
 import Projects from "@/components/ui/Lands/Projects";
+import ProjectDetails from "@/components/ui/Lands/LandDetail/ProjetDetails";
 
 const Map = dynamic(() => import("@/components/LeafLetMap/Map"), {
   ssr: false,
@@ -30,15 +30,13 @@ export default function Home() {
 
   const { data: projects, isLoading } = useGetAllProjects(token);
 
-  console.log(projects, "projectsss");
-
   return (
     <>
       <Toaster position="top-center" reverseOrder={false} />
       <main className="relative h-[calc(100vh-4rem)] w-full">
         <div className="relative h-full w-full">
           <Map
-            lands={showLands ? lands : []}
+            lands={projects?.data || []}
             selectedLandId={selectedLandId}
             onSeeMoreDetails={handleLandsDetails}
             resetMap={resetMap}
@@ -73,7 +71,7 @@ export default function Home() {
               <Button variant="outline" size="sm" onClick={resetMap}>
                 <X className="inline" />
               </Button>
-              <LandDetails project={landDetails?.data} />
+              <ProjectDetails project={landDetails?.data} />
             </div>
           )}
         </div>

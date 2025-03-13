@@ -2210,14 +2210,6 @@ export const navItems = [
     items: [],
   },
   {
-    title: "Contract Farming",
-    url: "/dashboard/contract-farming",
-    icon: "product",
-    shortcut: ["p", "p"],
-    isActive: false,
-    items: [],
-  },
-  {
     title: "Account",
     url: "#",
     icon: "billing",

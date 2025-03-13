@@ -12,6 +12,7 @@ import { useDeleteProject } from "@/hooks/apis/useProject";
 import { useContextConsumer } from "@/context/Context";
 import { SweetAlert } from "@/components/alerts/SweetAlert";
 import UpdateProjectModal from "@/components/Forms/forms-modal/UpdateModal";
+import { getStatusStyles } from "@/lib/helpers";
 
 interface ProjectsProps {
   projects: any[];
@@ -54,15 +55,12 @@ const Projects: React.FC<ProjectsProps> = ({ projects, onSeeMoreDetails }) => {
               Title: project.title,
               Trade: project.trade,
               Sector: project.sector,
-              Address: project.address,
-              Tehsil: project.tehsil,
-              District: project.district,
-              Province: project.province,
-              Duration: project.duration,
+              Duration: `${project.duration} months`,
               "Start Date": project.startDate,
               "End Date": project.endDate,
               "Application Deadline": project.deadline,
               "Total Slots": project.totalSlots,
+              Address: `${project.address}, ${project.tehsil}, ${project.district}, ${project.province}`,
             };
 
             return (
@@ -74,6 +72,13 @@ const Projects: React.FC<ProjectsProps> = ({ projects, onSeeMoreDetails }) => {
                   <div className="flex justify-between items-center">
                     <CardTitle className="text-xl text-white">
                       Project Detail
+                      <span
+                        className={`px-2 py-1 text-sm font-medium rounded-md block w-fit capitalize ${getStatusStyles(
+                          project.status
+                        )}`}
+                      >
+                        {project.status}
+                      </span>
                     </CardTitle>
                     <div className="flex">
                       <Button

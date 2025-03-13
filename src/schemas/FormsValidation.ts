@@ -176,6 +176,10 @@ const projectFormSchema = z
   .refine((data) => new Date(data.endDate) > new Date(data.startDate), {
     message: "End date must be greater than start date",
     path: ["endDate"],
+  })
+  .refine((data) => new Date(data.startDate) > new Date(data.deadline), {
+    message: "Deadline must be smaller than start date",
+    path: ["deadline"],
   });
 
 export {

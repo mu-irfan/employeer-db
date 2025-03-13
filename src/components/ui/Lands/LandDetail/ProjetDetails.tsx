@@ -1,5 +1,6 @@
 import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { getStatusStyles } from "@/lib/helpers";
 
 interface ProjectDetailsProps {
   project: any;
@@ -12,19 +13,17 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({ project }) => {
     Title: project.title,
     Trade: project.trade,
     Sector: project.sector,
-    Description: project.description,
-    Requirements: project.requirements,
-    Tehsil: project.tehsil,
-    District: project.district,
-    Province: project.province,
-    Duration: project.duration,
+    Duration: `${project.duration} months`,
     "Start Date": project.startDate,
     "End Date": project.endDate,
     "Application Deadline": project.deadline,
     "Total Slots": project.totalSlots,
     Address: project.address,
-    "Slots Filled": project.slotsFilled,
-    Status: project.status,
+    Tehsil: project.tehsil,
+    District: project.district,
+    Province: project.province,
+    Description: project.description,
+    Requirements: project.requirements,
   };
 
   return (
@@ -32,6 +31,13 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({ project }) => {
       <CardHeader className="bg-gradient-to-r from-blue-600 to-blue-700 py-2 px-4">
         <div className="flex justify-between items-center">
           <CardTitle className="text-xl text-white">Project Details</CardTitle>
+          <span
+            className={`px-2 py-1 text-sm font-medium rounded-md block w-fit capitalize mr-2 ${getStatusStyles(
+              project.status
+            )}`}
+          >
+            {project.status}
+          </span>
         </div>
       </CardHeader>
       <CardContent className="p-8 space-y-2">
