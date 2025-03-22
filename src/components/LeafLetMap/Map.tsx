@@ -116,6 +116,7 @@ const MarkersAndPolygons = ({
 }: any) => {
   const map = useMap();
   const currentPopup = useRef<L.Popup | null>(null);
+  const currentPolygon = useRef<L.Polygon | null>(null);
 
   const showProjectDetailsOnMap = useCallback(
     (project: any) => {
