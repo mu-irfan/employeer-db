@@ -95,7 +95,6 @@ const AddProjectForm = ({ onOpenChange, onClose }: any) => {
       ...data,
       location: [lat, lng],
     };
-    console.log(data, "datatatatata");
     createProject(
       { data: updatedData, token },
       {

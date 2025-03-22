@@ -32,15 +32,11 @@ import { Textarea } from "../ui/textarea";
 
 const UpdateProjectForm = ({ project, onClose }: any) => {
   const { token } = useContextConsumer();
-  const [selectedCategory, setSelectedCategory] = useState("");
-  const [selectedManagerUuid, setSelectedManagerUuid] = useState("");
   const [districtOptions, setDistrictOptions] = useState<Option[]>([]);
   const [tehsilOptions, setTehsilOptions] = useState<Option[]>([]);
 
   //
   const { mutate: updateProject, isPending: updating } = useUpdateProject();
-
-  console.log(project, "fasdfadsafasdfasdfasdf");
 
   const form = useForm<z.infer<typeof updateProjectFormSchema>>({
     resolver: zodResolver(updateProjectFormSchema),
@@ -360,7 +356,6 @@ const UpdateProjectForm = ({ project, onClose }: any) => {
                     <FormControl>
                       <Select
                         onValueChange={(value) => {
-                          setSelectedCategory(value);
                           field.onChange(value);
                         }}
                       >

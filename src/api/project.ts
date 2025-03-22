@@ -14,6 +14,25 @@ export const createProject = async (data: any, token: string) => {
   }
 };
 
+export const getProjectDetails = async (uuid: string, token: string) => {
+  try {
+    const response = await axios.get(`${baseURL}/project/get`, {
+      params: { uuid },
+      headers: { Authorization: `Bearer ${token}` },
+    });
+
+    if (response.data) {
+      return response.data;
+    } else {
+      console.log("No data found for the project details");
+      return {};
+    }
+  } catch (error) {
+    console.error("Error fetching project details:", error);
+    return error;
+  }
+};
+
 export const getProjectList = async (token: string) => {
   try {
     const res = await axios.get(`${baseURL}/project/list`, {

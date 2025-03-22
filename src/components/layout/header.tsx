@@ -8,14 +8,12 @@ import { Separator } from "../ui/separator";
 import { Breadcrumbs } from "../breadcrumbs";
 import { UserNav } from "./user-nav";
 import { Button } from "../ui/button";
-import { useContextConsumer } from "@/context/Context";
 import AddProjectModal from "../ui/SearchForm/AddProject";
 
 export default function Header() {
   const router = useRouter();
   const pathname = usePathname();
   const driverRef = useRef<any>(null);
-  const { handleSearchSubmit } = useContextConsumer();
   const [isSearchOpen, setSearchOpen] = useState(false);
 
   useEffect(() => {
@@ -45,7 +43,7 @@ export default function Header() {
     return () => driverRef.current?.destroy();
   }, []);
 
-  const handleSearchLandClick = () => {
+  const handleAddProject = () => {
     setSearchOpen((prev) => !prev);
     driverRef.current?.destroy();
   };
@@ -63,7 +61,7 @@ export default function Header() {
               type="button"
               id="add_project"
               size="sm"
-              onClick={handleSearchLandClick}
+              onClick={handleAddProject}
             >
               Add Project
             </Button>
@@ -73,11 +71,7 @@ export default function Header() {
           <UserNav />
         </div>
       </header>
-      <AddProjectModal
-        open={isSearchOpen}
-        onOpenChange={setSearchOpen}
-        onSearchSubmit={handleSearchSubmit}
-      />
+      <AddProjectModal open={isSearchOpen} onOpenChange={setSearchOpen} />
     </>
   );
 }

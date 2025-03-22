@@ -2141,65 +2141,6 @@ export const tehsils = [
   { value: "kot chutta", label: "Kot Chutta" },
 ];
 
-export const facilitiesFilterOptions = [
-  { id: "canal", label: "Canal" },
-  { id: "electricity", label: "Electricity" },
-  { id: "road", label: "Road" },
-  { id: "tubewell", label: "Tubewell" },
-  { id: "well", label: "Well" },
-];
-
-export const landTypeFilterOptions = [
-  { id: "irrigated", label: "Irrigated" },
-  { id: "rainfed", label: "Rainfed" },
-];
-
-export const cropsFilteringOptions = [
-  { value: "barley", label: "Barley" },
-  { value: "bottle gourd", label: "Bottle Gourd" },
-  { value: "broccoli", label: "Broccoli" },
-  { value: "canary seed", label: "Canary Seed" },
-  { value: "canola", label: "Canola" },
-  { value: "carrot", label: "Carrot" },
-  { value: "chickpea kabuli", label: "Chickpea Kabuli" },
-  { value: "coriander", label: "Coriander" },
-  { value: "cotton", label: "Cotton" },
-  { value: "cucumber", label: "Cucumber" },
-  { value: "flax seed", label: "Flax Seed" },
-  { value: "french beans", label: "French Beans" },
-  { value: "kidney beans", label: "Kidney Beans" },
-  { value: "lentil", label: "Lentil" },
-  { value: "maize", label: "Maize" },
-  { value: "mash", label: "Mash" },
-  { value: "millet", label: "Millet" },
-  { value: "mustard", label: "Mustard" },
-  { value: "oat", label: "Oat" },
-  { value: "okra", label: "Okra" },
-  { value: "pea", label: "Pea" },
-  { value: "peanut", label: "Peanut" },
-  { value: "potato", label: "Potato" },
-  { value: "radish", label: "Radish" },
-  { value: "sesame", label: "Sesame" },
-  { value: "sorghum", label: "Sorghum" },
-  { value: "soybean", label: "Soybean" },
-  { value: "sponge gourd", label: "Sponge Gourd" },
-  { value: "sugar beet", label: "Sugar Beet" },
-  { value: "sunflower", label: "Sunflower" },
-  { value: "tinda gourd", label: "Tinda Gourd" },
-  { value: "turnip", label: "Turnip" },
-  { value: "vegetable marrow(squash)", label: "Vegetable Marrow (Squash)" },
-  { value: "watermelon", label: "Watermelon" },
-  { value: "wheat", label: "Wheat" },
-];
-
-export const pricesFilteringOptions = [
-  { value: "0-500000", label: "Upto 5 Lakh" },
-  { value: "500000-1000000", label: "5 Lakh - 10 Lakh" },
-  { value: "1000000-2000000", label: "10 Lakh - 20 Lakh" },
-  { value: "2000000-10000000", label: "20 Lakh - 1 Crore" },
-  { value: "10000000-", label: "1 Crore and above" },
-];
-
 export const navItems = [
   {
     title: "Dashboard",
