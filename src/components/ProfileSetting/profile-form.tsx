@@ -335,7 +335,7 @@ export default function ProfileForm() {
           </LabelInputContainer>
           <LabelInputContainer className="mb-4">
             <Label htmlFor="description" className="dark:text-farmacieGrey">
-              description
+              Description
             </Label>
             <FormField
               control={form.control}
@@ -359,7 +359,7 @@ export default function ProfileForm() {
           </LabelInputContainer>
           <LabelInputContainer className="mb-4">
             <Label htmlFor="address" className="dark:text-farmacieGrey">
-              address
+              Address
             </Label>
             <FormField
               control={form.control}
