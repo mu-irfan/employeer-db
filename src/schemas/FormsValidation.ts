@@ -131,7 +131,6 @@ const profileFormSchema = z.object({
 const updateProjectFormSchema = z.object({
   title: z.string().optional(),
   trade: z.string().optional(),
-  sector: z.string().optional(),
   description: z.string().optional(),
   requirements: z.string().optional(),
   location: z.array(z.number()).length(2).optional(),
@@ -153,7 +152,6 @@ const projectFormSchema = z
   .object({
     title: z.string().nonempty({ message: "Project Title is required." }),
     trade: z.string().nonempty({ message: "Trade selection is required." }),
-    sector: z.string().nonempty({ message: "Sector is required." }),
     description: z.string().nonempty({ message: "Description is required." }),
     requirements: z
       .string()
@@ -177,8 +175,12 @@ const projectFormSchema = z
     message: "End date must be greater than start date",
     path: ["endDate"],
   })
-  .refine((data) => new Date(data.startDate) > new Date(data.deadline), {
-    message: "Deadline must be smaller than start date",
+  .refine((data) => new Date(data.deadline) > new Date(data.startDate), {
+    message: "Application deadline must be greater than start date",
+    path: ["deadline"],
+  })
+  .refine((data) => new Date(data.deadline) < new Date(data.endDate), {
+    message: "Application deadline must be less than end date",
     path: ["deadline"],
   });
 

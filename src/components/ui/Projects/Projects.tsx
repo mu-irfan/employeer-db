@@ -54,7 +54,6 @@ const Projects: React.FC<ProjectsProps> = ({ projects, onSeeMoreDetails }) => {
             const projectDetails = {
               Title: project.title,
               Trade: project.trade,
-              Sector: project.sector,
               Duration: `${project.duration} months`,
               "Start Date": project.startDate,
               "End Date": project.endDate,

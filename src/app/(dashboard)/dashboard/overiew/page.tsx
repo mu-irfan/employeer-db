@@ -29,11 +29,11 @@ export default function Home() {
 
   return (
     <>
-      <Toaster position="top-center" reverseOrder={false} />
+      <Toaster />
       <main className="relative h-[calc(100vh-4rem)] w-full">
         <div className="relative h-full w-full">
           <Map
-            projects={showProjects ? projects?.data : []}
+            projects={projects?.data || []}
             selectedProjectId={selectedProjectId}
             onSeeMoreDetails={handleProjectDetails}
             resetMap={resetMap}

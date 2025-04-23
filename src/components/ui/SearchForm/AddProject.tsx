@@ -9,7 +9,7 @@ const AddProjectModal = ({ open, onOpenChange }: any) => {
           <h2 className="text-2xl font-bold tracking-tighter pb-6">
             Add Project
           </h2>
-          <AddProjectForm onOpenChange={onOpenChange} />
+          <AddProjectForm onClose={onOpenChange} />
         </DialogContent>
       </Dialog>
     </>
