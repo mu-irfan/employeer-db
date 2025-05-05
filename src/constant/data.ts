@@ -2151,6 +2151,14 @@ export const navItems = [
     items: [],
   },
   {
+    title: "Student Evalution",
+    url: "/dashboard/student-evalution",
+    icon: "sevalution",
+    isActive: false,
+    shortcut: ["se", "se"],
+    items: [],
+  },
+  {
     title: "Student",
     url: "#",
     icon: "users",
